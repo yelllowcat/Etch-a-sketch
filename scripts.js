@@ -18,7 +18,6 @@ divsDom.forEach((div) => {
   div.addEventListener("mouseover", changeColor);
 });
 
-//divsDom.addEventListener("mouseover", changeColor);
 function changeColor(e) {
   const div = e.target;
   let rand1 = getRandomInt(256);
@@ -29,11 +28,26 @@ function changeColor(e) {
 
   div.style.backgroundColor = color;
 }
-function changeSize(divs) {
+function changeSize() {
   const size = prompt("add new grid(lower than 100)");
-  for (let i = 0; i < squareSize; i++) {
-    container.removeChild(divs);
-    console.log("hello");
+  let contador = container.childNodes.length;
+  const totalSize = (size * size) / 800;
+  const sizeString = totalSize.toString();
+  console.log(sizeString);
+  for (let i = 0; i < contador; i++) {
+    container.firstChild.remove();
+  }
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      divs = document.createElement("div");
+      const totalSize = 800 / size;
+      divs.style.width = totalSize + "px";
+      divs.style.height = totalSize + "px";
+      divs.classList.add("divs");
+      divs.addEventListener("mouseover", changeColor);
+
+      container.appendChild(divs);
+    }
   }
 }
 function getRandomInt(max) {
